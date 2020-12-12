@@ -1,0 +1,25 @@
+<div class='auth-module--Auth'>
+  <section class='auth-module--artwork'>
+    <div class='logo'></div>
+
+    <div class='slogan'>
+      <p>Your service, your choice.</p>
+      <div class='banner'>
+        <img src='assets/auth-banner.png'>
+      </div>
+    </div>
+  </section>
+
+  <section
+   *ngIf="isLogin; then LoginFormComponent else RegisterFormComponent"
+    class='auth-module--form'>
+  </section>
+
+  <ng-template #LoginFormComponent>
+    <app-register></app-register>
+  </ng-template>
+
+  <ng-template #RegisterFormComponent>
+      <app-login></app-login>
+  </ng-template>
+</div>

@@ -1,0 +1,42 @@
+.header-module--menu {
+  margin-left: auto;
+
+  nav {
+    font-weight: 700;
+    font-size: 1.2em;
+    color: #008ccf;
+    font-family: "Lato", sans-serif;
+
+    ul {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      justify-content: flex-end;
+
+      .menu-module--item {
+        margin: 0 0 10px 0;
+
+        .menu-module--link1 {
+          margin: 0 2em 0 0;
+          transform: scaleX(1);
+        }
+
+        .menu-module--link2 {
+          margin: 0 2em 0 0;
+        }
+
+        .menu-module--login {
+          margin: 0 0.5em 0 0;
+          font-size: 0.9em;
+          color: #495057;
+        }
+
+        .menu-module--register {
+          background-color: #008ccf;
+          color: white;
+          font-size: 0.9em;
+        }
+      }
+    }
+  }
+}

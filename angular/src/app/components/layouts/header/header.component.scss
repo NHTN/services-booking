@@ -1,0 +1,41 @@
+.header-module--Header {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  position: relative;
+  box-shadow: black;
+  border-radius: 4px;
+  border-style: outset;
+
+  .container-module--container {
+    width: 100%;
+
+    .header-module--container {
+      display: grid;
+
+      grid-template-columns: repeat(12, 1fr);
+      align-items: center;
+      .header-module--col1 {
+        grid-column: 2/6;
+
+        .header-module--brand {
+          position: relative;
+          font-size: 1.2em;
+          font-weight: 800;
+          font-family: "Lato", sans-serif;
+          color: #008ccf;
+        }
+      }
+
+      .header-module--col2 {
+        grid-column: 6/-2;
+        height: 55px;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}
