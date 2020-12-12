@@ -1,0 +1,25 @@
+$IO-MAX-WIDTH-PC: 1580px;
+$IO-PADDING-PC: 30px;
+$IO-MARGIN-PC: 30px;
+
+$IO-MAX-WIDTH-PHONE: 320px;
+$IO-PADDING-PHONE: 10px;
+$IO-MARGIN-PHONE: 15px;
+
+$IO-HEADER-HEIGHT: 54px;
+
+.SECTION {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    > .SECTION_BOX {
+        width: 100%;
+        max-width: $IO-MAX-WIDTH-PC;
+        padding: 0 $IO-PADDING-PC;
+
+        @media (max-width: $IO-SM-MIN) {
+            padding: 0 $IO-PADDING-PHONE;
+        }
+    }
+}
