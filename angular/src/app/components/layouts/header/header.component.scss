@@ -23,10 +23,15 @@
 
         .header-module--brand {
           position: relative;
-          font-size: 1.2em;
+          font-size: 1.5em;
           font-weight: 800;
           font-family: "Lato", sans-serif;
           color: #008ccf;
+
+          a {
+            text-decoration: inherit;
+            color: inherit;
+          }
         }
       }
 
