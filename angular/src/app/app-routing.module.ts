@@ -1,3 +1,4 @@
+import { BannerComponent } from './components/homepage/banner/banner.component';
 import { HomeComponent } from './components/homepage/home/home.component';
 import { AppComponent } from './app.component';
 import { AppMaterialModule } from './material.module';
@@ -10,8 +11,7 @@ import { AuthModule } from './auth.module';
 
 const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent
+    path: '', component: HomeComponent
   },
   {
     path: 'auth', component: AuthComponent,

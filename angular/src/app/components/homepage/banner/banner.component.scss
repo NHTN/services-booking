@@ -1,18 +1,37 @@
-.banner {
+.banner-module--Banner {
   height: 50%;
   width: 100%;
+  display: flex;
   background-color: gray;
 
-  .bannerBox {
-    width: 100%;
-    height: 100%;
-    padding: 10 30 30 10;
-    background-color: white;
+  .banner-module--content {
+    flex-grow: 1;
+    padding: 50 30 30 50;
+    background-color: rgb(116, 105, 105);
 
-    .bannerBoxContent {
-      height: 100%;
+    .banner-content--container {
       width: 100%;
-      background-color: antiquewhite;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: blue;
+
+      .content-module--slogan {
+        flex-grow: 1;
+      }
+
+      .content-module--description {
+        flex-grow: 1;
+        background-color: antiquewhite;
+      }
+      .content-module--booking {
+        flex-grow: 1;
+      }
     }
+  }
+
+  .banner-module--artwork {
+    flex-grow: 1;
+    background-color: aqua;
   }
 }
