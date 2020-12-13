@@ -1,6 +1,5 @@
 .auth-module--Auth {
-  height: 100%;
-  width: 100%;
+  height: 600px;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -99,7 +98,6 @@
         flex-grow: none;
         height: 0.3px;
         width: 70%;
-        content: "Or";
         background-color: #6e6d7a;
         color: #6e6d7a;
         border-top: 1px solid #e0e0e0;
