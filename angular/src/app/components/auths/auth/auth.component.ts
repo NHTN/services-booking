@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  isLogin = true;
-  constructor() { }
+  constructor(private router: Router) {
+    this.router.navigate(['auth/login'])
+  }
 
   ngOnInit(): void {
   }
+
+
 
 }

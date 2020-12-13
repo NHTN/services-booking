@@ -15,11 +15,11 @@ export class HomeHeaderComponent implements OnInit {
   }
 
   onRegister() {
-    this.route.navigate(['/auth'])
+    this.route.navigate(['/auth/register'])
   }
 
   onLogin() {
-    this.route.navigate(['/login'])
+    this.route.navigate(['/auth/login'])
   }
 
 }
