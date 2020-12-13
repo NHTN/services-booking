@@ -7,15 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   constructor(
-    private route: Router) { }
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    this.route.navigate(['/']);
+    this.router.navigate(['/']);
   }
 
 }

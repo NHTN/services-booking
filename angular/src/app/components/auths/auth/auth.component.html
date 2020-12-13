@@ -10,16 +10,16 @@
     </div>
   </section>
 
-  <section
-   *ngIf="isLogin; then LoginFormComponent else RegisterFormComponent"
-    class='auth-module--form'>
+  <section class='auth-module--form'>
+    <main>
+      <div class='form-module--google'>
+        <h2>Sign up to Garage Booking</h2>
+        <button mat-raised-button>Sign up with Google</button>
+      </div>
+      <hr class='divider'>
+      <div class='form-module--detail'>
+        <router-outlet></router-outlet>
+      </div>
+    </main>
   </section>
-
-  <ng-template #LoginFormComponent>
-    <app-register></app-register>
-  </ng-template>
-
-  <ng-template #RegisterFormComponent>
-      <app-login></app-login>
-  </ng-template>
 </div>

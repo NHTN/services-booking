@@ -1,3 +1,4 @@
+import { AuthStatusService } from './../../auths/auth-status.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -8,18 +9,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeHeaderComponent implements OnInit {
   constructor(
-    private route: Router
+    private route: Router,
+    private authStatusService: AuthStatusService
   ) { }
 
   ngOnInit(): void {
   }
 
   onRegister() {
-    this.route.navigate(['/auth'])
+    this.authStatusService.changeData(false);
+    this.route.navigate(['/auth/register'])
   }
 
   onLogin() {
-    this.route.navigate(['/login'])
+    this.authStatusService.changeData(true);
+    this.route.navigate(['/auth/login'])
   }
 
 }
