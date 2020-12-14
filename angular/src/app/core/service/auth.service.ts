@@ -1,8 +1,9 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from "rxjs";
 import User from "src/app/data/interfaces/user.interface";
 import { environment } from "src/environments/environment";
-
+import { share } from 'rxjs/operators';
 
 interface LoginContextInterface {
   username: string;
@@ -16,25 +17,19 @@ export interface SignUpInternalContextInterface {
   password: string;
 }
 
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private currentUserSubject = new BehaviorSubject<User>({} as User);
   public currentUser = this.currentUserSubject.asObservable();
-  private apiUrl = `${environment.apiUrl}`;
+  private apiUrl = `${environment.apiUrl}`
 
   constructor(
     private httpClient: HttpClient
   ) {
   }
 
-  googleLogin(user: any) {
-    console.log(
-      this.httpClient.post(`${this.apiUrl}/login/social`, user)
-    )
-  }
-
-
   login(loginContext: LoginContextInterface) {
-    // return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
+    // return this.http.post<User>(, { username, password })
     //   .pipe(map(user => {
     //     localStorage.setItem('user', JSON.stringify(user));
     //     this.userSubject.next(user);
@@ -42,9 +37,20 @@ export class AuthService {
     //   }));
   }
 
-  register(signupContext: SignUpInternalContextInterface) {
+  register = async (signupContext: SignUpInternalContextInterface) => {
     const url = `${this.apiUrl}/auth/register/internal`;
-    return this.httpClient.post(url, signupContext).pipe();
+    const header = new HttpHeaders();
+    header.set('Access-Control-Allow-Origin', '*')
+
+
+    return this.httpClient.post<SignUpInternalContextInterface>(
+      url,
+      signupContext,
+      {
+        headers: header
+      }
+    )
+      .subscribe(data => console.log(data))
   }
 
 }

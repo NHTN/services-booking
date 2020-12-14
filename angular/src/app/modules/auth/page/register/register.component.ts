@@ -41,8 +41,7 @@ export class RegisterComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
-  ngOnInit(
-  ): void {
+  public ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: [
         '',
@@ -80,21 +79,15 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onRegister() {
+  public onRegister = async () => {
     const userSignup = {
-      username: this.f.user.value as string,
-      email: this.f.email.value as string,
-      password: this.f.password.value as string,
     } as SignUpInternalContextInterface;
-
-    //this.authService.register(userSignup);
-    console.log(
-      "username: ", this.f.username.value,
-      " email:", this.f.email.value,
-      " password:", this.f.password.value,
-      " confirmPassword:", this.f.confirmPassword.value,
-    )
-
+    const temp = await this.authService.register({
+      "username": this.f.username.value as string,
+      "email": this.f.email.value as string,
+      "password": this.f.password.value as string,
+    })
+    console.log(temp);
   }
 
 }

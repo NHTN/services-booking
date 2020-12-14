@@ -9,7 +9,7 @@ import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 })
 export class AuthComponent implements OnInit {
   constructor(
-    private router: Router,
+    public router: Router,
     private socialAuthService: SocialAuthService,
   ) {
   }

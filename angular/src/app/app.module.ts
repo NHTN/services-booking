@@ -1,3 +1,4 @@
+import { VerifyEmailComponent } from './modules/auth/page/verify-email/verify-email.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -6,7 +7,6 @@ import { SocialLoginModule } from 'angularx-social-login';
 import { AppComponent } from './app.component';
 import { AppMaterialModule } from './material.module';
 
-import { AppRoutingModule } from './app-routing.module';
 import { SocialLoginConfig } from './configs/social-login.config';
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +22,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './modules/auth/modal/auth.component';
 import { LoginComponent } from './modules/auth/page/login/login.component';
 import { RegisterComponent } from './modules/auth/page/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -31,13 +32,15 @@ const routes: Routes = [
     path: 'auth', component: AuthComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent, },
+      { path: 'verify-email', component: VerifyEmailComponent }
     ]
   }
 ];
 
 @NgModule({
   imports: [
+    HttpClientModule,
     ReactiveFormsModule,
     AppMaterialModule,
     BrowserModule,
@@ -57,7 +60,8 @@ const routes: Routes = [
     ServicesListCardComponent,
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    VerifyEmailComponent
   ],
   providers: [SocialLoginConfig],
   bootstrap: [AppComponent],
