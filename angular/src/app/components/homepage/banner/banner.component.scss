@@ -1,8 +1,7 @@
 .banner-module--Banner {
-  height: 50%;
-  width: 100%;
+  flex-grow: 1;
   display: flex;
-  background-color: #e8e9ed;
+  background-color: #3a506b;
 
   .banner-module--content {
     flex-grow: 1;
@@ -19,7 +18,7 @@
         padding-top: 20px;
 
         h1 {
-          color: #284b63;
+          color: #f4f3ee;
           font-size: 2em;
           font-weight: 800;
           font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -33,7 +32,7 @@
         justify-content: space-between;
 
         p {
-          color: #3d5a80;
+          color: #f4f3ee;
           font-size: 1.1em;
           word-break: break-all;
           font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;

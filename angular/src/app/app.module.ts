@@ -11,6 +11,7 @@ import { HomeHeaderComponent } from './components/homepage/home-header/home-head
 import { HomeComponent } from './components/homepage/home/home.component';
 import { FooterComponent } from './components/layouts/footer/footer.component';
 import { HeaderComponent } from './components/layouts/header/header.component';
+import { ServicesListCardComponent } from './components/homepage/services-list-card/services-list-card.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HeaderComponent } from './components/layouts/header/header.component';
     BannerComponent,
     HomeHeaderComponent,
     HomeComponent,
+    ServicesListCardComponent,
   ],
   imports: [
     BrowserModule,

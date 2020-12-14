@@ -19,14 +19,14 @@ export class AuthComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.authStatusService.currentData.subscribe(res => {
-      console.log(res)
-      if (res) {
-        this.router.navigate(['auth/login'])
-      } else {
-        this.router.navigate(['auth/register'])
-      }
-    })
+    // this.authStatusService.currentData.subscribe(res => {
+    //   console.log(res)
+    //   if (res) {
+    //     this.router.navigate(['auth/login'])
+    //   } else {
+    //     this.router.navigate(['auth/register'])
+    //   }
+    // })
   }
 
 
