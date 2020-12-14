@@ -1,13 +1,11 @@
-import { BannerComponent } from './components/homepage/banner/banner.component';
-import { HomeComponent } from './components/homepage/home/home.component';
-import { AppComponent } from './app.component';
-import { AppMaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
+import { AppMaterialModule } from './material.module';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthComponent } from './components/auths/auth/auth.component';
-import { LoginComponent } from './components/auths/login/login.component';
-import { RegisterComponent } from './components/auths/register/register.component';
-import { AuthModule } from './auth.module';
+
+import { AuthComponent } from './modules/auth/modal/auth.component';
+import { HomeComponent } from './modules/home/modal/home/home.component';
+import { LoginComponent } from './modules/auth/page/login/login.component';
+import { RegisterComponent } from './modules/auth/page/register/register.component';
 
 const routes: Routes = [
   {
@@ -22,9 +20,11 @@ const routes: Routes = [
   }
 ];
 
-
 @NgModule({
-  imports: [AppMaterialModule, RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

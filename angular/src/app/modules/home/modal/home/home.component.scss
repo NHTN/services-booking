@@ -1,0 +1,16 @@
+.home-module--Home {
+  flex-grow: 1;
+  flex-direction: column;
+  display: flex;
+  background-color: #e7ecef;
+
+  app-banner {
+    flex-grow: 1;
+    display: flex;
+  }
+
+  app-services-list-card {
+    flex-grow: 1;
+    display: flex;
+  }
+}
