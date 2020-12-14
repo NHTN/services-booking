@@ -4,25 +4,10 @@
   flex-direction: column;
   padding: 10px 30px 20px 30px;
 
-  .form-module--fullname {
+  .form-module--username {
     flex: 1;
-    display: flex;
-    flex-direction: row;
-
-    .form-module--firstname {
-      flex: 1;
-
-      mat-form-field {
-        width: 85%;
-      }
-    }
-
-    .form-module--lastname {
-      flex: 1;
-
-      mat-form-field {
-        width: 100%;
-      }
+    mat-form-field {
+      width: 100%;
     }
   }
 
@@ -34,6 +19,13 @@
   }
 
   .form-module--password {
+    flex: 1;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .form-module--confirm-password {
     flex: 1;
     mat-form-field {
       width: 100%;

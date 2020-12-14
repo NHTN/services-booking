@@ -9,6 +9,7 @@ import { AppMaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SocialLoginConfig } from './configs/social-login.config';
 
+import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    ReactiveFormsModule,
     AppMaterialModule,
     BrowserModule,
     SocialLoginModule,
