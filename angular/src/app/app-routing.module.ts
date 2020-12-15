@@ -3,7 +3,7 @@ import { AppMaterialModule } from './material.module';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthComponent } from './modules/auth/modal/auth.component';
-import { HomeComponent } from './modules/home/modal/home/home.component';
+import { HomeComponent } from './modules/home/page/home/home.component';
 import { LoginComponent } from './modules/auth/page/login/login.component';
 import { RegisterComponent } from './modules/auth/page/register/register.component';
 

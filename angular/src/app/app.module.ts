@@ -1,3 +1,4 @@
+import { HomeComponent } from './modules/home/page/home/home.component';
 import { VerifyEmailComponent } from './modules/auth/page/verify-email/verify-email.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -14,7 +15,6 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
-import { HomeComponent } from './modules/home/modal/home/home.component';
 import { BannerComponent } from './modules/home/modal/banner/banner.component';
 import { HomeHeaderComponent } from './modules/home/modal/home-header/home-header.component';
 import { ServicesListCardComponent } from './modules/home/modal/services-list-card/services-list-card.component';
@@ -25,6 +25,7 @@ import { RegisterComponent } from './modules/auth/page/register/register.compone
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GlobalHttpInterceptorService } from './core/interceptor/global-http.interceptor';
 import { GlobalErrorHandlerService } from './core/service/global-error-handler.service';
+import { ProfileComponent } from './modules/profile/page/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,9 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent, },
       { path: 'verify-email', component: VerifyEmailComponent }
     ]
+  },
+  {
+    path: ':username', component: ProfileComponent,
   }
 ];
 
@@ -53,17 +57,18 @@ const routes: Routes = [
   ],
   declarations: [
     AppComponent,
+    ProfileComponent,
     HeaderComponent,
     FooterComponent,
     MainLayoutComponent,
     BannerComponent,
     HomeHeaderComponent,
-    HomeComponent,
     ServicesListCardComponent,
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    HomeComponent
   ],
   providers: [
     SocialLoginConfig,

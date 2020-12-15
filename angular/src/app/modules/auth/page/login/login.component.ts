@@ -87,11 +87,11 @@ export class LoginComponent implements OnInit {
     this.authService.internalLogin(loginData)
       .pipe(first())
       .subscribe({
-        next: () => {
+        next: (data) => {
           // get return url from query parameters or default to home page
           //   const returnUrl = this.route.snapshot.queryParams[''] || '/';
           // this.router.navigateByUrl(returnUrl);
-          this.router.navigate(['/'])
+          this.router.navigate([`/nhtn1999`])
         },
         error: error => {
           //this.alertService.error(error);
