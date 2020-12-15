@@ -1,5 +1,6 @@
-import { AuthService } from './core/service/auth.service';
+import { AuthService, LoginContextInterface } from './core/service/auth.service';
 import { Component } from '@angular/core';
+import User from './data/interfaces/user.interface';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular';
+  user: LoginContextInterface;
 
   constructor(
     private authService: AuthService
   ) {
-
+    this.authService.user.subscribe(x => this.user = x);
   }
 }

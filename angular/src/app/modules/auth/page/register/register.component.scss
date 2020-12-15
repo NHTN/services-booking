@@ -5,28 +5,28 @@
   padding: 10px 30px 20px 30px;
 
   .form-module--username {
-    flex: 1;
+    flex-grow: 1;
     mat-form-field {
       width: 100%;
     }
   }
 
   .form-module--email {
-    flex: 1;
+    flex-grow: 1;
     mat-form-field {
       width: 100%;
     }
   }
 
   .form-module--password {
-    flex: 1;
+    flex-grow: 1;
     mat-form-field {
       width: 100%;
     }
   }
 
   .form-module--confirm-password {
-    flex: 1;
+    flex-grow: 1;
     mat-form-field {
       width: 100%;
     }
@@ -51,8 +51,9 @@
       }
     }
   }
+
   .form-module--register-button {
-    flex: 3;
+    flex-grow: 3;
     button {
       color: white;
       background-color: #ef476f;

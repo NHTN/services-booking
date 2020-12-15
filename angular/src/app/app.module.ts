@@ -1,6 +1,6 @@
 import { VerifyEmailComponent } from './modules/auth/page/verify-email/verify-email.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocialLoginModule } from 'angularx-social-login';
 
@@ -22,7 +22,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './modules/auth/modal/auth.component';
 import { LoginComponent } from './modules/auth/page/login/login.component';
 import { RegisterComponent } from './modules/auth/page/register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { GlobalHttpInterceptorService } from './core/interceptor/global-http.interceptor';
+import { GlobalErrorHandlerService } from './core/service/global-error-handler.service';
 
 const routes: Routes = [
   {
@@ -63,7 +65,18 @@ const routes: Routes = [
     RegisterComponent,
     VerifyEmailComponent
   ],
-  providers: [SocialLoginConfig],
+  providers: [
+    SocialLoginConfig,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalHttpInterceptorService,
+      multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerService
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: []
 }

@@ -1,7 +1,10 @@
-import { AuthService, SignUpInternalContextInterface } from './../../../../core/service/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import * as _ from 'lodash';
+import { AuthService, SignUpInternalContextInterface } from './../../../../core/service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +13,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
   public form: FormGroup;
+  private loading: boolean = false;
+  private errorMessage: string = "";
+
   public ACCOUNT_VALIDATION_MESSAGE = {
     'username': [
       { type: 'required', message: 'Username is required' },
@@ -79,15 +85,37 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+
+
   public onRegister = async () => {
+    this.loading = true;
+    this.errorMessage = '';
+
     const userSignup = {
-    } as SignUpInternalContextInterface;
-    const temp = await this.authService.register({
       "username": this.f.username.value as string,
       "email": this.f.email.value as string,
       "password": this.f.password.value as string,
-    })
-    console.log(temp);
+    } as SignUpInternalContextInterface;
+
+    if (this.form.invalid) {
+      console.log('Invalid data');
+      return;
+    }
+
+    (await this.authService.register(userSignup))
+      .subscribe(
+        (response) => {
+          if (_.isEqual(_.get(response, "status"), 201)) {
+            return this.router.navigate(['auth/verify-email'],);
+          }
+        },
+        (error) => {
+          this.errorMessage = error;
+          console.log(this.errorMessage)
+          this.loading = false;
+          throw error;
+        }
+      );
   }
 
 }
