@@ -1,6 +1,8 @@
-import { Router } from '@angular/router';
+import { AuthService, LoginContextInterface } from './../../../../core/service/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
 
 
@@ -11,6 +13,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
   public form: FormGroup;
+  private loading: boolean = false;
   public ACCOUNT_VALIDATION_MESSAGE = {
     'username': [
       { type: 'required', message: 'Username is required' },
@@ -35,13 +38,12 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(
+    private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
-  validUsername(f: FormControl): Boolean {
-    // TO-DO
-    return true;
-  }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -72,10 +74,26 @@ export class LoginComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onLogin() {
-    console.log(
-      "username: ", this.f.username.value,
-      " password:", this.f.password.value
-    )
-  }
+    if (this.f.invalid) {
+      console.log('Invalid data');
+      return;
+    }
 
+    const loginData: LoginContextInterface = {
+      "username": this.f.username.value,
+      "password": this.f.password.value
+    }
+
+    this.authService.internalLogin(loginData)
+      .subscribe({
+        next: (data: any) => {
+          localStorage.setItem('token', JSON.stringify(data.body.token.token));
+          this.router.navigate([`/admin`])
+        },
+        error: error => {
+          //this.alertService.error(error);
+          this.loading = false;
+        }
+      });
+  }
 }

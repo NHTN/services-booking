@@ -1,0 +1,92 @@
+<div class='admin-module--Admin'>
+  <div class='container-module--Container'>
+    <div class='admin-module--container'>
+      <div class='admin-module--options'>
+        <div class='options-module--profile'>
+          <div class='profile-module--avatar'>
+            <img src="assets/images/logo.png">
+          </div>
+          <div class='profile-module--info'>
+            <h2>John123</h2>
+            <p>Username@gmail.com</p>
+          </div>
+        </div>
+
+        <div class='options-module--detail'>
+          <div class='detail-module--container'>
+            <div class='detail-module--item'>
+              <div class='item-module--container'>
+                <button mat-raised-button (click)="onProfileClick()">
+                  <mat-icon>account_circle</mat-icon>
+                  Profile
+                </button>
+              </div>
+            </div>
+
+            <div class='detail-module--item'>
+              <div class='item-module--container'>
+                <button mat-raised-button (click)="onClientsClick()">
+                  <mat-icon>group</mat-icon>
+                  Clients
+                </button>
+              </div>
+            </div>
+
+            <div class='detail-module--item'>
+              <div class='item-module--container'>
+                <button mat-raised-button>
+                  <mat-icon>time_to_leave</mat-icon>
+                  Garages
+                </button>
+              </div>
+            </div>
+
+            <div class='detail-module--item'>
+              <div class='item-module--container'>
+                <button mat-raised-button>
+                  <mat-icon>spa</mat-icon>
+                  Services
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class='options-module--info'>
+          <div class='info-module--container'>
+            <p>Garage Services Booking</p>
+            <p>Admin Dashboard</p>
+          </div>
+        </div>
+      </div>
+
+      <div class='admin-module--detail'>
+        <div class='detail-module--container'>
+          <div class='detail-module--header'>
+
+          </div>
+
+          <div class='detail-module--content'>
+            <div class='content-module--container'>
+              <div class='content-module--nav'>
+
+              </div>
+              <div class='content-module--table'>
+                <router-outlet></router-outlet>
+              </div>
+            </div>
+
+          </div>
+
+          <div class='detail-module--footer'>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
