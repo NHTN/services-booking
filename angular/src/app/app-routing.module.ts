@@ -1,3 +1,4 @@
+import { AdminComponent } from './admin/admin.component';
 import { NgModule } from '@angular/core';
 import { AppMaterialModule } from './material.module';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,7 +18,11 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
     ]
+  },
+  {
+    path: 'admin', component: AdminComponent
   }
+
 ];
 
 @NgModule({

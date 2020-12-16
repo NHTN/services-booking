@@ -1,3 +1,4 @@
+import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './modules/home/page/home/home.component';
 import { VerifyEmailComponent } from './modules/auth/page/verify-email/verify-email.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -40,7 +41,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: ':username', component: ProfileComponent,
+    path: 'admin', component: AdminComponent
   }
 ];
 
@@ -68,7 +69,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     VerifyEmailComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent
   ],
   providers: [
     SocialLoginConfig,
