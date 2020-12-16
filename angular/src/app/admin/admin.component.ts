@@ -1,26 +1,16 @@
+import { Router } from '@angular/router';
 import { AdminService } from './../core/service/admin.service';
 import { Component, OnInit } from '@angular/core';
+import jwt_decode from 'jwt-decode';
+import { UseExistingWebDriver } from 'protractor/built/driverProviders';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+interface TokenDecoded {
+  id: string;
+  role: string;
+  iat: number;
+  exp: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  // { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  // { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  // { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  // { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-
-];
 
 @Component({
   selector: 'app-admin',
@@ -28,18 +18,26 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-
-  constructor(private adminService: AdminService) { }
+  constructor(
+    private adminService: AdminService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.getUserList();
+    const token = localStorage.getItem('token') as string;
+    const user = jwt_decode(token) as TokenDecoded;
+    console.log(user.role);
+    if (user.role != 'admin') {
+      this.router.navigate(['/']);
+    }
   }
 
-  getUserList(): void {
-    this.adminService.getUserList().subscribe(res => {
-      console.log(res);
-    })
+
+  onProfileClick(): void {
+    this.router.navigate(['/admin/profile'])
+  }
+
+  onClientsClick(): void {
+    this.router.navigate(['/admin/clients'])
   }
 }

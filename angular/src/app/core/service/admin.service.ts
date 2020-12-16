@@ -16,7 +16,7 @@ export class AdminService {
   public getUserList = (): Observable<object> => {
     const url = `${this.apiUrl}/users`;
 
-    return this.http.post(
+    return this.http.get(
       url,
       {
         observe: 'response'

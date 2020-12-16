@@ -85,13 +85,10 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.internalLogin(loginData)
-      .pipe(first())
       .subscribe({
-        next: (data) => {
-          // get return url from query parameters or default to home page
-          //   const returnUrl = this.route.snapshot.queryParams[''] || '/';
-          // this.router.navigateByUrl(returnUrl);
-          this.router.navigate([`/nhtn1999`])
+        next: (data: any) => {
+          localStorage.setItem('token', JSON.stringify(data.body.token.token));
+          this.router.navigate([`/admin`])
         },
         error: error => {
           //this.alertService.error(error);

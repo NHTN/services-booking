@@ -23,6 +23,11 @@ export interface LoginWithGG {
   idToken: string;
 }
 
+export interface UserToken {
+  expiresIn: string;
+  token: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private userSubject = new BehaviorSubject<LoginContextInterface>({} as LoginContextInterface);
@@ -46,11 +51,11 @@ export class AuthService {
   ) => {
     const url = `${environment.apiUrl}/auth/login/internal`;
 
-    return this.http.post<LoginContextInterface>(url, loginContext)
-      .pipe(map(user => {
-        localStorage.setItem('user', JSON.stringify(user));
-        this.userSubject.next(user);
-      }));
+    return this.http.post<LoginContextInterface>(url, loginContext, {
+      observe: 'response'
+    })
+      .pipe(
+      );
   }
 
   public socialLogin = (

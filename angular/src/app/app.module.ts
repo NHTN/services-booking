@@ -1,3 +1,4 @@
+import { ClientsListComponent } from './clients-list/clients-list.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './modules/home/page/home/home.component';
 import { VerifyEmailComponent } from './modules/auth/page/verify-email/verify-email.component';
@@ -41,15 +42,23 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'admin', component: AdminComponent
+    path: 'admin', component: AdminComponent,
+    children: [
+      {
+        path: 'clients', component: ClientsListComponent
+      },
+      {
+        path: 'profile', component: ProfileComponent
+      }
+    ]
   }
 ];
 
 @NgModule({
   imports: [
     HttpClientModule,
-    ReactiveFormsModule,
     AppMaterialModule,
+    ReactiveFormsModule,
     BrowserModule,
     SocialLoginModule,
     RouterModule,
@@ -60,6 +69,7 @@ const routes: Routes = [
     AppComponent,
     ProfileComponent,
     HeaderComponent,
+    ClientsListComponent,
     FooterComponent,
     MainLayoutComponent,
     BannerComponent,
@@ -70,7 +80,7 @@ const routes: Routes = [
     RegisterComponent,
     VerifyEmailComponent,
     HomeComponent,
-    AdminComponent
+    AdminComponent,
   ],
   providers: [
     SocialLoginConfig,
