@@ -1,7 +1,10 @@
-import { AuthService, SignUpInternalContextInterface } from './../../../../core/service/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import * as _ from 'lodash';
+import { AuthService, SignUpInternalContextInterface } from './../../../../core/service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +13,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
   public form: FormGroup;
+  private loading: boolean = false;
+  private errorMessage: string = "";
+
   public ACCOUNT_VALIDATION_MESSAGE = {
     'username': [
       { type: 'required', message: 'Username is required' },
@@ -41,8 +47,7 @@ export class RegisterComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
-  ngOnInit(
-  ): void {
+  public ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: [
         '',
@@ -80,21 +85,37 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onRegister() {
+
+
+  public onRegister = async () => {
+    this.loading = true;
+    this.errorMessage = '';
+
     const userSignup = {
-      username: this.f.user.value as string,
-      email: this.f.email.value as string,
-      password: this.f.password.value as string,
+      "username": this.f.username.value as string,
+      "email": this.f.email.value as string,
+      "password": this.f.password.value as string,
     } as SignUpInternalContextInterface;
 
-    //this.authService.register(userSignup);
-    console.log(
-      "username: ", this.f.username.value,
-      " email:", this.f.email.value,
-      " password:", this.f.password.value,
-      " confirmPassword:", this.f.confirmPassword.value,
-    )
+    if (this.form.invalid) {
+      console.log('Invalid data');
+      return;
+    }
 
+    (await this.authService.register(userSignup))
+      .subscribe(
+        (response) => {
+          if (_.isEqual(_.get(response, "status"), 201)) {
+            return this.router.navigate(['auth/verify-email'],);
+          }
+        },
+        (error) => {
+          this.errorMessage = error;
+          console.log(this.errorMessage)
+          this.loading = false;
+          throw error;
+        }
+      );
   }
 
 }

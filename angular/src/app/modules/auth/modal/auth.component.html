@@ -12,13 +12,16 @@
 
   <section class='auth-module--form'>
     <main>
-      <div class='form-module--google'>
-        <h2>Sign up to Garage Booking</h2>
-        <div>
-          <button mat-raised-button class='signup' (click)='loginInWithGoogle()'>Sign up with Google</button>
+      <ng-template [ngIf]="router.url !== '/auth/verify-email'">
+        <div class='form-module--google'>
+          <h2>Sign up to Garage Booking</h2>
+          <div>
+            <button mat-raised-button class='signup' (click)='loginInWithGoogle()'>Sign up with Google</button>
+          </div>
         </div>
-      </div>
-      <hr class='divider'>
+        <hr class='divider'>
+      </ng-template>
+
       <div class='form-module--detail'>
         <router-outlet></router-outlet>
       </div>
