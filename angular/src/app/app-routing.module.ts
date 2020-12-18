@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "./core/guard/auth.guard";
-import { AuthComponent } from "./modules/auth/modal/auth.component";
+import { AuthComponent } from "./modules/auth/modal/auth-layout/auth.component";
 import { LoginComponent } from "./modules/auth/page/login/login.component";
 import { RegisterComponent } from "./modules/auth/page/register/register.component";
 import { VerifyEmailComponent } from "./modules/auth/page/verify-email/verify-email.component";
