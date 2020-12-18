@@ -1,0 +1,63 @@
+.form-module--register {
+  flex: 10;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 30px 20px 30px;
+
+  .form-module--username {
+    flex-grow: 1;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .form-module--email {
+    flex-grow: 1;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .form-module--password {
+    flex-grow: 1;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .form-module--confirm-password {
+    flex-grow: 1;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .form-module--auth-nav {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    padding: 10px 20px 0px 30px;
+
+    p {
+      flex-flow: 1;
+      text-align: right;
+
+      a {
+        margin-right: 5px;
+        color: #4f3cc9;
+      }
+      mat-icon {
+        color: #4f3cc9;
+      }
+    }
+  }
+
+  .form-module--register-button {
+    flex-grow: 3;
+    button {
+      color: white;
+      background-color: #ef476f;
+      width: 50%;
+    }
+  }
+}

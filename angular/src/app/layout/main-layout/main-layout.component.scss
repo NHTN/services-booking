@@ -1,0 +1,22 @@
+.main-layout-module--Main-layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  app-header {
+    flex-grow: none;
+  }
+
+  router-outlet {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+  }
+
+  app-footer {
+    flex-grow: none;
+  }
+}

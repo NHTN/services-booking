@@ -1,0 +1,68 @@
+<form [formGroup]="form" (ngSubmit)="onRegister()" class='form-module--register'>
+  <div class='form-module--username'>
+    <mat-form-field appearance="outline">
+      <mat-hint>Username</mat-hint>
+      <mat-label>Username</mat-label>
+      <input formControlName="username" type="text" matInput placeholder="Username">
+      <mat-error *ngFor="let validation of ACCOUNT_VALIDATION_MESSAGE.username">
+        <mat-error class="error-message" *ngIf="f.username.hasError(validation.type)
+                      && (f.username.dirty || f.username.touched)">
+          {{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class='form-module--email'>
+    <mat-form-field appearance="outline">
+      <mat-hint>Email</mat-hint>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" type="email" matInput placeholder="Email">
+      <mat-error *ngFor="let validation of ACCOUNT_VALIDATION_MESSAGE.email">
+        <mat-error class="error-message" *ngIf="f.email.hasError(validation.type)
+                      && (f.email.dirty || f.email.touched)">
+          {{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class='form-module--password'>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <mat-hint>Password</mat-hint>
+      <input formControlName="password" type="password" matInput placeholder="6+ characters">
+      <mat-error *ngFor="let validation of ACCOUNT_VALIDATION_MESSAGE.password">
+        <mat-error class="error-message" *ngIf="f.password.hasError(validation.type)
+                      && (f.password.dirty || f.password.touched)">
+          {{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class='form-module--confirm-password'>
+    <mat-form-field appearance="outline">
+      <mat-label>Confirm Password</mat-label>
+      <mat-hint>Confirm Password</mat-hint>
+      <input formControlName="confirmPassword" type="password" matInput placeholder="6+ characters">
+      <mat-error *ngFor="let validation of ACCOUNT_VALIDATION_MESSAGE.confirmPassword">
+        <mat-error class="error-message" *ngIf="f.confirmPassword.hasError(validation.type)
+                      && (f.confirmPassword.dirty || f.confirmPassword.touched)">
+          {{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <nav class='form-module--auth-nav'>
+    <p>Already a members?
+      <a href='/auth/login'>Login</a>
+    </p>
+    <mat-icon>login</mat-icon>
+  </nav>
+
+  <div class='form-module--register-button'>
+    <button mat-raised-button>Register</button>
+  </div>
+</form>
