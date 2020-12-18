@@ -1,5 +1,8 @@
-import { ClientsListComponent } from './clients-list/clients-list.component';
-import { AdminComponent } from './admin/admin.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './core/guard/auth.guard';
+import { HomeAuthComponent } from './home-auth/home-auth.component';
+import { ClientsListComponent } from './modules/dashboard/page/clients-list/clients-list.component';
+import { AdminComponent } from './modules/dashboard/modal/admin/admin.component';
 import { HomeComponent } from './modules/home/page/home/home.component';
 import { VerifyEmailComponent } from './modules/auth/page/verify-email/verify-email.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,7 +30,7 @@ import { RegisterComponent } from './modules/auth/page/register/register.compone
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GlobalHttpInterceptorService } from './core/interceptor/global-http.interceptor';
 import { GlobalErrorHandlerService } from './core/service/global-error-handler.service';
-import { ProfileComponent } from './modules/profile/page/profile/profile.component';
+import { ProfileComponent } from './modules/dashboard/page/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -43,12 +46,13 @@ const routes: Routes = [
   },
   {
     path: 'admin', component: AdminComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        path: 'clients', component: ClientsListComponent
+        path: 'clients/:userid', component: ClientsListComponent
       },
       {
-        path: 'profile', component: ProfileComponent
+        path: 'profile/:userid', component: ProfileComponent
       }
     ]
   }
@@ -61,8 +65,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     BrowserModule,
     SocialLoginModule,
-    RouterModule,
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
     BrowserAnimationsModule
   ],
   declarations: [
@@ -81,6 +84,7 @@ const routes: Routes = [
     VerifyEmailComponent,
     HomeComponent,
     AdminComponent,
+    HomeAuthComponent
   ],
   providers: [
     SocialLoginConfig,

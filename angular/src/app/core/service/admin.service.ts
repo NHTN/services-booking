@@ -19,12 +19,32 @@ export class AdminService {
     return this.http.get(
       url,
       {
-        observe: 'response'
+        withCredentials: true,
+        observe: 'response' as 'response'
       }
     ).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(error);
       })
-    )
+    );
+  }
+
+  public getUser = (userid: string): Observable<object> => {
+    const url = `${this.apiUrl}/users/username`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<object>(
+      url,
+      { id: userid },
+      {
+        headers: headers,
+        withCredentials: true,
+        observe: 'response' as 'response'
+      }
+    ).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(error);
+      })
+    );
   }
 }

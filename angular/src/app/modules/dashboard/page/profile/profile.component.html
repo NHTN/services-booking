@@ -1,0 +1,37 @@
+<div class='profile-module--Profile'>
+  <form [formGroup]="form" class='form-module--profile'>
+    <div class='form-module--item'>
+      <mat-form-field appearance="outline">
+        <mat-hint>First name</mat-hint>
+        <input formControlName="firstname" type="text" matInput>
+      </mat-form-field>
+    </div>
+
+    <div class='form-module--item'>
+      <mat-form-field appearance="outline">
+        <mat-hint>Last name</mat-hint>
+        <input formControlName="lastname" type="text" matInput>
+      </mat-form-field>
+    </div>
+
+    <div class='form-module--item'>
+      <mat-form-field appearance="outline">
+        <mat-hint>Gender</mat-hint>
+        <input formControlName="gender" type="text" matInput>
+      </mat-form-field>
+    </div>
+
+
+    <div class='form-module--item'>
+      <mat-form-field appearance="outline">
+        <mat-hint>Date of birth</mat-hint>
+        <input formControlName="dOb" matInput>
+      </mat-form-field>
+    </div>
+
+
+    <div class='form-module--update-button'>
+      <button mat-raised-button>Update</button>
+    </div>
+  </form>
+</div>

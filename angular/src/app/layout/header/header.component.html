@@ -6,10 +6,12 @@
           <a routerLink="/" routerLinkActive="active">Garage Booking</a>
         </div>
       </div>
-      <div class='header-module--col2'>
+      <div *ngIf="this.authService.getIsLogin()">
+        <app-home-auth></app-home-auth>
+      </div>
+      <div *ngIf="!this.authService.getIsLogin()">
         <app-home-header></app-home-header>
       </div>
     </div>
   </div>
 </header>
-

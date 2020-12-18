@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/service/auth.service';
 
 @Component({
   selector: 'app-home-header',
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class HomeHeaderComponent implements OnInit {
   constructor(
-    private route: Router
+    private route: Router,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {

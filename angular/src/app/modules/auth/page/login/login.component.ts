@@ -14,6 +14,7 @@ import { first } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
   public form: FormGroup;
   private loading: boolean = false;
+
   public ACCOUNT_VALIDATION_MESSAGE = {
     'username': [
       { type: 'required', message: 'Username is required' },
@@ -73,6 +74,12 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
+
+  redirectTo(uri: string) {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+      this.router.navigate([uri]));
+  }
+
   onLogin() {
     if (this.f.invalid) {
       console.log('Invalid data');
@@ -87,8 +94,12 @@ export class LoginComponent implements OnInit {
     this.authService.internalLogin(loginData)
       .subscribe({
         next: (data: any) => {
+
+          // document.cookie = `Authorization=${data.body.token.token}`;
+          this.authService.setIsLogin(true);
+
           localStorage.setItem('token', JSON.stringify(data.body.token.token));
-          this.router.navigate([`/admin`])
+          this.redirectTo(`/admin`)
         },
         error: error => {
           //this.alertService.error(error);
