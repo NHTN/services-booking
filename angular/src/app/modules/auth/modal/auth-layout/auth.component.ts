@@ -11,6 +11,7 @@ import { first } from 'rxjs/operators';
 })
 export class AuthComponent implements OnInit {
   private loading: Boolean = false;
+  public isLogin: Boolean = false;
   constructor(
     public router: Router,
     private authService: AuthService,
@@ -21,6 +22,12 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  redirectTo(uri: string) {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+      this.router.navigate([uri]));
+  }
+
+
   loginInWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(googleUser => {
       console.log(googleUser)
@@ -28,8 +35,8 @@ export class AuthComponent implements OnInit {
         .pipe(first())
         .subscribe({
           next: () => {
-            // get return url from query parameters or default to home page
-            this.router.navigate(['/']);
+            this.isLogin = true;
+            this.redirectTo('/');
           },
           error: error => {
             this.loading = false;

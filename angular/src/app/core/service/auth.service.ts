@@ -1,11 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import User from "src/app/data/interfaces/user.interface";
 import { environment } from "src/environments/environment";
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Router } from "@angular/router";
-import { ErrorStateMatcher } from "@angular/material/core";
 import { throwError } from "rxjs";
 
 export interface LoginContextInterface {
@@ -23,11 +22,19 @@ export interface LoginWithGG {
   idToken: string;
 }
 
+export interface UserToken {
+  expiresIn: string;
+  token: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private userSubject = new BehaviorSubject<LoginContextInterface>({} as LoginContextInterface);
   public user = this.userSubject.asObservable();
   private apiUrl = `${environment.apiUrl}`;
+  public isLogin: boolean = false;
+
+
 
   constructor(
     private router: Router,
@@ -35,6 +42,18 @@ export class AuthService {
   ) {
     // this.userSubject = new BehaviorSubject<LoginContextInterface>(JSON.parse(localStorage.getItem('username')));
     this.user = this.userSubject.asObservable();
+  }
+
+  public setIsLogin(value: boolean) {
+    this.isLogin = value;
+  }
+
+  public getIsLogin() {
+    return this.isLogin;
+  }
+
+  public userEmitChange(usr: User) {
+    this.userSubject.next(usr);
   }
 
   public get userValue(): LoginContextInterface {
@@ -46,11 +65,11 @@ export class AuthService {
   ) => {
     const url = `${environment.apiUrl}/auth/login/internal`;
 
-    return this.http.post<LoginContextInterface>(url, loginContext)
-      .pipe(map(user => {
-        localStorage.setItem('user', JSON.stringify(user));
-        this.userSubject.next(user);
-      }));
+    return this.http.post<LoginContextInterface>(url, loginContext, {
+      observe: 'response' as 'response'
+    })
+      .pipe(
+      );
   }
 
   public socialLogin = (
@@ -61,7 +80,7 @@ export class AuthService {
     return this.http.post<LoginWithGG>(url, loginGGContext).pipe();
   }
 
-  register = async (
+  public register = async (
     signupContext: SignUpInternalContextInterface
   ): Promise<Observable<object>> => {
     const url = `${this.apiUrl}/auth/register/internal`;
@@ -78,4 +97,5 @@ export class AuthService {
       })
     )
   }
+
 }
