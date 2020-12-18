@@ -30,9 +30,15 @@ export interface UserToken {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+<<<<<<< HEAD
+  private currentUserSubject = new BehaviorSubject<User>({} as User);
+  public currentUser = this.currentUserSubject.asObservable();
+  // apiUrl = `${environment.apiUrl}`;
+=======
   private userSubject = new BehaviorSubject<LoginContextInterface>({} as LoginContextInterface);
   public user = this.userSubject.asObservable();
   private apiUrl = `${environment.apiUrl}`;
+>>>>>>> origin/users
 
   constructor(
     private router: Router,
@@ -42,6 +48,28 @@ export class AuthService {
     this.user = this.userSubject.asObservable();
   }
 
+<<<<<<< HEAD
+  // googleLogin(user: any) {
+  //   console.log(
+  //     this.httpClient.post(`${this.apiUrl}/login/social`, user)
+  //   )
+  // }
+
+
+  // login(loginContext: LoginContextInterface) {
+  //   // return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
+  //   //   .pipe(map(user => {
+  //   //     localStorage.setItem('user', JSON.stringify(user));
+  //   //     this.userSubject.next(user);
+  //   //     return user;
+  //   //   }));
+  // }
+
+  // register(signupContext: SignUpInternalContextInterface) {
+  //   const url = `${this.apiUrl}/auth/register/internal`;
+  //   return this.httpClient.post(url, signupContext).pipe();
+  // }
+=======
   public get userValue(): LoginContextInterface {
     return this.userSubject.value;
   }
@@ -65,6 +93,7 @@ export class AuthService {
 
     return this.http.post<LoginWithGG>(url, loginGGContext).pipe();
   }
+>>>>>>> origin/users
 
   register = async (
     signupContext: SignUpInternalContextInterface
