@@ -1,8 +1,6 @@
 .admin-module--Admin {
   height: 600px;
   position: relative;
-  padding: 10px;
-  background-color: antiquewhite;
 
   .container-module--Container {
     width: 100%;
@@ -19,7 +17,7 @@
         display: flex;
         color: white;
         flex-direction: column;
-        background-color: #1b1b1e;
+        background-color: #023047;
 
         .options-module--profile {
           margin-top: 20px;
@@ -60,7 +58,6 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            background-color: black;
 
             .detail-module--item {
               flex-grow: 1;
@@ -103,7 +100,6 @@
           flex-grow: 1;
           display: flex;
           flex-direction: column;
-          background-color: gray;
 
           .detail-module--header {
             flex-grow: 1;
@@ -113,23 +109,19 @@
           .detail-module--content {
             flex-grow: 5;
             display: flex;
-            background-color: white;
             padding: 20px;
 
             .content-module--container {
               flex-grow: 1;
               display: flex;
               flex-direction: column;
-              background-color: antiquewhite;
 
               .content-module--nav {
                 flex-grow: 1;
-                background-color: gray;
               }
 
               .content-module--table {
                 flex-grow: 4;
-                background-color: #1b1b1e;
               }
             }
           }

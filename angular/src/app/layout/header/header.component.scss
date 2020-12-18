@@ -14,13 +14,13 @@
     width: 100%;
 
     .header-module--container {
-      display: grid;
-
-      grid-template-columns: repeat(12, 1fr);
+      display: flex;
+      padding-left: 30px;
+      padding-right: 30px;
       align-items: center;
 
       .header-module--col1 {
-        grid-column: 2/6;
+        flex-grow: 4;
 
         .header-module--brand {
           position: relative;
@@ -37,8 +37,7 @@
       }
 
       .header-module--col2 {
-        grid-column: 6/-2;
-        height: 55px;
+        flex-grow: 2;
         display: flex;
         justify-content: flex-end;
       }

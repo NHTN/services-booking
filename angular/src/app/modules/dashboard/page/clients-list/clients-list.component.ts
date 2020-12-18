@@ -1,5 +1,6 @@
-import { AdminService } from './../core/service/admin.service';
+import { AdminService } from '../../../../core/service/admin.service';
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 
 @Component({
@@ -20,12 +21,18 @@ export class ClientsListComponent implements OnInit {
   }
 
   getUserList(): void {
+
+    const token = localStorage.getItem('token')
+
+    if (token) {
+      document.cookie = `Authorization=${token}`;
+    }
+
     this.adminService.getUserList().subscribe((res: any) => {
       this.dataSource = res.body.data;
-      console.log(res.body);
 
       this.dataSource.forEach((user: any) => {
-        user.lastLogin = new Date(user.lastLogin).toDateString();
+        user.lastLogin = moment(new Date(user.lastLogin).toDateString()).format('hh:mm:ss DD/MM/YYYY');
       });
     });
   }
